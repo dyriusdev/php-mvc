@@ -1,0 +1,11 @@
+{
+	"autoload" : {
+		"psr-4" : {
+			"Demo\\Mvc\\" : "src"
+		}
+	},
+	"name" : "demo/mvc",
+	"require" : {
+		"php" : ">=8.2"
+	}
+}

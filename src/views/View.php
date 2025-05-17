@@ -3,6 +3,8 @@
     
     class View {
         
+        private static array $vars;
+        
         /**
          * Read content from the file and return the result
          * @param string $view is the name of the file
@@ -11,6 +13,10 @@
         private static function getContentView(string $view) : string {
             $file = __DIR__ . '/../../resources/view/' . $view . '.html';
             return file_exists($file) ? file_get_contents($file) : '';
+        }
+        
+        public static function init($vars = []) : void {
+            self::$vars = $vars;
         }
         
         /**
@@ -22,6 +28,9 @@
          */
         public static function render(string $view, array $args = []) : string {
             $contentView = self::getContentView($view);
+            
+            $args = array_merge(self::$vars, $args);
+            
             
             $keys = array_keys($args);
             $keys = array_map(function($item) {

@@ -28,7 +28,7 @@
          * @return string html ready to be displayed
          */
         protected static function getView(string $title, string $content) : string {
-            return View::render('', [
+            return View::render('page', [
                 'title' => $title,
                 'header' => self::getHeader(),
                 'content' => $content,

@@ -7,6 +7,7 @@
 	"name" : "demo/mvc",
 	"require" : {
 		"php" : ">=8.2",
-		"william-costa/dot-env" : "~0.1"
+		"william-costa/dot-env" : "~0.1",
+		"william-costa/database-manager" : "~0.1"
 	}
 }

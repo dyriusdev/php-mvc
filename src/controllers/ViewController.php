@@ -35,5 +35,29 @@
                 'footer' => self::getFooter()
             ]);
         }
+        
+        public static function getPagination($request, $pagination) {
+            $pages = $pagination->getPages();
+            if (count($pages) <= 1) {
+                return '';
+            }
+            
+            $links = '';
+            $url = $request->getRouter()->getCurrentUrl();
+            $queryParams = $request->getQueryParams();
+            
+            foreach ($pages as $page) {
+                $queryParams['page'] = $page['page'];
+                $link = $url . '?' . http_build_query($queryParams);
+                
+                $links .= View::render('link', [
+                    'link' => $link,
+                    'page' => $page['page'],
+                    'active' => $page['current'] ? 'active' : ''
+                ]);
+            }
+            
+            return View::render('box', ['links' => $links]);
+        }
     }
 ?>

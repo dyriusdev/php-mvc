@@ -1,0 +1,24 @@
+<h1>Testimonials</h1>
+<hr>
+
+<section id="testimonials">
+	{{items}}
+	{{pagination}}
+</section>
+<hr>
+<section id="form">
+	<h1>Send Testimony</h1>
+	<form method="post" action="?page=1">
+		<div class="form-group">
+			<label for="name">Name :</label>
+			<input type="text" class="form-control" name="name" required>
+		</div>
+		<div class="form-group">
+			<label for="message">Message :</label>
+			<textarea class="form-control" rows="5" name="message" required></textarea>
+		</div>
+		<div class="form-group mt-3">
+			<button type="submit" class="btn btn-success">Send</button>
+		</div>
+	</form>
+</section>

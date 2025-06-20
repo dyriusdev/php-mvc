@@ -12,7 +12,7 @@
         private Request $request;
         
         public function __construct(string $url) {
-            $this->request = new Request();
+            $this->request = new Request($this);
             $this->url = $url;
             $this->setPrefix();
         }
@@ -150,6 +150,10 @@
          */
         public function delete(string $route, array $params = []) {
             return $this->addRoute('DELETE', $route, $params);
+        }
+        
+        public function getCurrentUrl() {
+            return $this->url . $this->getUri();
         }
     }
 ?>

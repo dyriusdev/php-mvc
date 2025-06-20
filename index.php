@@ -3,8 +3,10 @@
     use Demo\Mvc\http\Router;
     use Demo\Mvc\views\View;
     
+    WilliamCosta\DotEnv\Environment::load(__DIR__);
+    
     // Setting constants of the project
-    define('URL', 'http://localhost:8400/mvc');
+    define('URL', getenv('URL'));
     
     // Define default variables
     View::init([

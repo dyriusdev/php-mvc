@@ -7,6 +7,9 @@ use Demo\Mvc\controllers\TestimonyController;
     
     //Home route
     $router->get('/', [
+        'middlewares' => [
+            'maintenance'
+        ],
         function() {
             return new Response(200, HomeController::getHome());
         }

@@ -4,7 +4,8 @@
     use \Closure;
     use \Exception;
     use \ReflectionFunction;
-    
+use Demo\Mvc\http\middleware\Queue;
+                    
     class Router {
         
         private string $url = '', $prefix = '';
@@ -40,6 +41,9 @@
                     continue;
                 }
             }
+            
+            // Middleware of the route
+            $params['middlewares'] = $params['middlewares'] ?? [];
             
             // Route variables (dinamyc support)
             $params['variables'] = [];
@@ -110,7 +114,7 @@
                     $args[$name] = $route['variables'][$name] ?? '';
                 }
                 
-                return call_user_func_array($route['controller'], $args);
+                return (new Queue($route['middlewares'], $route['controller'], $args))->next($this->request);
             } catch (Exception $e) {
                 return new Response($e->getCode(), $e->getMessage());
             }
